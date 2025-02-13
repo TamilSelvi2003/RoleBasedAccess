@@ -1,0 +1,25 @@
+.user {
+    width: 500px;
+    background-color: #f2f2f2;
+    height: auto;
+    padding: 10px;
+    margin: 300px auto;
+    border-radius: 6px;
+
+}
+
+.user h4 {
+    padding: 0 20px;
+
+}
+
+.user h2 {
+    color: #111;
+}
+
+.userbtn {
+    background-color: orange;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+}

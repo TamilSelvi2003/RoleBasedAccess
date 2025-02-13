@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { get } from '../../services/ApiEndpoint';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
-import "./Admin.css"; 
+import "./Admin.css";
 
 const Admin = () => {
   const Navigate = useNavigate()
@@ -25,47 +25,47 @@ const Admin = () => {
     };
     fetchUsers();
   }, []);
- 
+
   const toggleForm = () => {
     setShowForm(!showForm);
-    setFormData({ name: "", email: "", role: "" }); 
+    setFormData({ name: "", email: "", role: "" });
     setEditingIndex(null);
   };
- 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (editingIndex !== null) {
- 
+
       const updatedUsers = users.map((user, index) =>
         index === editingIndex ? formData : user
       );
       setUsers(updatedUsers);
       toast.success("User updated successfully!");
     } else {
-      // Add new user
+
       setUsers([...users, formData]);
       toast.success("User added successfully!");
     }
 
-    setShowForm(false);  
-    setFormData({ name: "", email: "", role: "" }); 
+    setShowForm(false);
+    setFormData({ name: "", email: "", role: "" });
     setEditingIndex(null);
   };
 
- 
+
   const handleEdit = (index) => {
     setFormData(users[index]);
     setEditingIndex(index);
-    setShowForm(true); 
+    setShowForm(true);
   };
 
- 
+
   const handleDelete = (index) => {
     const updatedUsers = users.filter((_, i) => i !== index);
     setUsers(updatedUsers);
@@ -75,9 +75,9 @@ const Admin = () => {
   return (
     <div className="user-management">
       <h2>User Management</h2>
-<button style={{float:"right",backgroundColor:"orange",padding:"5px 10px",border:"none",borderRadius:"5px"}} onClick={()=>Navigate('/')}>X</button>
+      <button className="adminbtn" onClick={() => Navigate('/')}>X</button>
       <button onClick={toggleForm} className="add-user-btn">
-        {!showForm && "Add User"}
+        {!showForm ? "Add User":"Back"}
       </button>
       {showForm && (
         <form onSubmit={handleSubmit} className="user-form">
@@ -97,14 +97,17 @@ const Admin = () => {
             placeholder="Email"
             required
           />
-          <input
-            type="text"
+          <select
             name="role"
             value={formData.role}
             onChange={handleInputChange}
-            placeholder="Role"
             required
-          />
+          >
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+            <option value="cashier">Cashier</option>
+          </select>
+
           <button type="submit">{editingIndex !== null ? "Update" : "Submit"}</button>
         </form>
       )}
@@ -131,7 +134,7 @@ const Admin = () => {
                 <button className="delete" onClick={() => handleDelete(index)}>
                   Delete
                 </button>
-                </td>
+              </td>
             </tr>
           ))}
         </tbody>

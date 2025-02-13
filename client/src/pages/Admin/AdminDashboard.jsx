@@ -1,31 +1,20 @@
-import React from "react";
-import { Link,useNavigate } from "react-router-dom";
- import './Admin.css'
+import React, { useState } from "react";
+import "./Admin.css";
+import RouteManager from "./RouteManager";
+import Sidebar from "./Sidebar";
 
 const AdminDashboard = () => {
-    const navigate = useNavigate()
-    const gotoAdmin = () => {
-        navigate('/admin');
-      };
+  const [selectedRole, setSelectedRole] = useState("admin");
+
+  const handleRoleChange = (newRole) => {
+    setSelectedRole(newRole);
+  };
+
   return (
-    <div className="sidebar">
-      <h2>Admin  </h2>
-      <button style={{padding:"5px 10px",border:"none" ,borderRadius:'5px',marginTop:"-40px",float:"right",backgroundColor:"orange"}} onClick={()=>navigate('/')}>X</button>
-      <ul>
-        
-        <li>
-          <Link to="/tasks">Tasks</Link>
-        </li>
-        <li>
-          <Link to="/settings">Settings</Link>
-        </li>
-        <li>
-        <button style={{textDecoration:"none",margin :"10px"}} className="admin-btn" onClick={gotoAdmin}>
-                ViewUser
-              </button>
-        </li>
-      </ul>
-    </div>
+    <>
+      <Sidebar selectedRole={selectedRole} onRoleChange={handleRoleChange} />
+      <RouteManager selectedRole={selectedRole} />
+    </>
   );
 };
 

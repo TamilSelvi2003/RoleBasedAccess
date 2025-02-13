@@ -1,0 +1,44 @@
+.cash{
+    background-color: #f2f2f2;
+    padding:  10px;
+    margin: 300px auto;
+    width: 500px;
+    height: auto;
+    border: none;
+    border-radius: 6px;
+}
+.cash h2{
+    color: orange;
+}
+.cash h4{
+    padding: 0 20px;
+}
+.cashbtn{
+    background-color: orange;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: -25px;
+    float: right;
+}
+.account{
+    background-color: #f2f2f2;
+    padding:  10px;
+    margin: 300px auto;
+    width: 500px;
+    height: auto;
+    border: none;
+    border-radius: 6px;
+}
+ 
+ 
+.accountbtn{
+    padding:5px 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: -25px;
+    background-color: orange;
+}
+.accountbtn:hover{
+    background-color: rgb(223, 177, 92);
+}
